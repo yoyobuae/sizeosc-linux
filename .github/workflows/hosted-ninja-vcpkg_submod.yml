@@ -50,7 +50,7 @@ jobs:
       - name: Install prerequisites
         if: ${{ matrix.os=='ubuntu-latest' }}
         run: |
-          sudo apt-get install libegl1-mesa-dev
+          sudo apt-get install libegl1-mesa-dev libtool
           sudo -H python3 -m pip install Jinja2
 
       - uses: actions/checkout@v4
