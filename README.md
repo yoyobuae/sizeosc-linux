@@ -7,6 +7,8 @@ Reimplementation of the SizeOSC SteamVR plugin for Linux users.
 
 ## VrcAdvert
 
+https://github.com/galister/VrcAdvert
+
 This is required for this program to receive SizeOSC scale events from the puppet radial in menu. Run it like so:
 ```
 dotnet run sizeosc 9431 9430
