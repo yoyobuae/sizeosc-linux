@@ -2,10 +2,6 @@
 cmake_minimum_required(VERSION 3.0)
 project(sizeosc VERSION 0.0.1)
 
-# Find dependencies provided by vcpkg (via vcpkg.cmake)
-find_package(imgui CONFIG REQUIRED)
-find_package(OpenGL REQUIRED)
-
 # main target
 add_executable(sizeosc)
 target_sources(sizeosc PRIVATE main.cpp osc/OscOutboundPacketStream.cpp osc/OscPrintReceivedElements.cpp osc/OscReceivedElements.cpp osc/OscTypes.cpp ip/IpEndpointName.cpp)
@@ -20,15 +16,11 @@ else()
   message(FATAL "No OS detected!")
 endif(CMAKE_SYSTEM_NAME MATCHES "Linux")
 
-target_link_libraries(sizeosc PRIVATE imgui::imgui)
-target_link_libraries(sizeosc PRIVATE OpenGL::GL)
+target_link_directories(sizeosc PRIVATE "lib")
+target_link_libraries(sizeosc PRIVATE "libopenvr_api.so")
 target_include_directories(sizeosc PRIVATE .)
 set_property(TARGET sizeosc PROPERTY CXX_STANDARD 20)
 
 install(TARGETS sizeosc)
-install(FILES "imgui.ini" TYPE BIN)
-if(CMAKE_SYSTEM_NAME MATCHES "Windows")
-	install(FILES "${CMAKE_BINARY_DIR}/Release/SDL2.dll" TYPE BIN)
-endif(CMAKE_SYSTEM_NAME MATCHES "Windows")
 
 include(CPack)
